@@ -1,7 +1,6 @@
 "use server";
 
 import { sendFunnelEvent } from "@/lib/analytics";
-import { sendWelcomeEmail } from "@/lib/email";
 import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase-admin";
 
 export type WaitlistState = {
@@ -67,24 +66,13 @@ export async function joinWaitlist(
   }
 
   try {
-    let unsubscribeToken = "";
-    let shouldSendWelcomeEmail = false;
-
     if (!previewMode) {
-      const { data: existingSubscriber, error: existingError } = await getSupabaseAdmin()
-        .from("waitlist_subscribers")
-        .select("id, unsubscribed_at")
-        .eq("email", email)
-        .maybeSingle();
-
-      if (existingError) throw existingError;
-
       const interestFlags = {
         ...(intent === "prototype_testing" && { prototype_testing_interest: true }),
         ...(intent === "founder_interview" && { interview_interest: true }),
         ...(intent === "founding_reservation" && { reservation_intent: true }),
       };
-      const { data, error } = await getSupabaseAdmin()
+      const { error } = await getSupabaseAdmin()
         .from("waitlist_subscribers")
         .upsert(
           {
@@ -102,13 +90,9 @@ export async function joinWaitlist(
             ...interestFlags,
           },
           { onConflict: "email" },
-        )
-        .select("unsubscribe_token")
-        .maybeSingle();
+        );
 
       if (error) throw error;
-      unsubscribeToken = data?.unsubscribe_token ?? "";
-      shouldSendWelcomeEmail = !existingSubscriber || Boolean(existingSubscriber.unsubscribed_at);
     }
 
     await sendFunnelEvent("waitlist_joined", {
@@ -117,12 +101,6 @@ export async function joinWaitlist(
       utmCampaign,
       intent,
     });
-
-    if (unsubscribeToken && shouldSendWelcomeEmail) {
-      await sendWelcomeEmail(email, unsubscribeToken).catch((error) => {
-        console.error("Unable to send welcome email", error);
-      });
-    }
 
     return { status: "success", message: "You’re in. Welcome to the Frontier.", email };
   } catch (error) {

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   const businessName = process.env.LEGAL_BUSINESS_NAME ?? "Frontier Supply Co.";
   const businessAddress = process.env.BUSINESS_ADDRESS ?? "South Africa";
-  const privacyEmail = process.env.PRIVACY_EMAIL ?? "hello@frontiersupply.co.za";
+  const privacyEmail = process.env.PRIVACY_EMAIL?.trim();
 
   return (
     <main className="legal-page">
@@ -26,13 +26,21 @@ export default function PrivacyPage() {
         <p>We use your information to send Frontier updates, invite relevant people into interviews or prototype testing, understand interest in a first release and improve this website. We do not sell your information.</p>
 
         <h2>Your choice</h2>
-        <p>Joining is voluntary. If you do not provide an email address, we cannot send updates. You can unsubscribe from any email, object to direct marketing, or ask us to access, correct or delete your information.</p>
+        <p>Joining is voluntary. If you do not provide an email address, we cannot send updates. You can object to direct marketing, or ask us to access, correct or delete your information.</p>
 
         <h2>Storage and service providers</h2>
-        <p>Information is stored using Supabase and, when email delivery is enabled, processed by our email provider. These providers may process information outside South Africa under their contractual safeguards. We retain your information while you remain subscribed or while reasonably needed for the purposes above.</p>
+        <p>Information is stored using Supabase. Supabase may process information outside South Africa under its contractual safeguards. We retain your information while you remain subscribed or while reasonably needed for the purposes above.</p>
 
         <h2>Contact</h2>
-        <p>The responsible party is {businessName}, {businessAddress}. Contact us at <a href={`mailto:${privacyEmail}`}>{privacyEmail}</a>. You may also lodge a complaint with the <a href="https://inforegulator.org.za/complaints/" target="_blank" rel="noreferrer">Information Regulator South Africa</a>.</p>
+        <p>
+          The responsible party is {businessName}, {businessAddress}. Contact us{" "}
+          {privacyEmail ? (
+            <>at <a href={`mailto:${privacyEmail}`}>{privacyEmail}</a></>
+          ) : (
+            <>through <a href="https://www.instagram.com/frontier_supply_company/" target="_blank" rel="noreferrer">Instagram</a></>
+          )}
+          . You may also lodge a complaint with the <a href="https://inforegulator.org.za/complaints/" target="_blank" rel="noreferrer">Information Regulator South Africa</a>.
+        </p>
       </article>
     </main>
   );
