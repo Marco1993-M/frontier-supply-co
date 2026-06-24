@@ -1,13 +1,41 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FunnelTracker } from "@/components/funnel-tracker";
+import { JsonLd } from "@/components/json-ld";
 import { RevealObserver } from "@/components/reveal-observer";
 import { WaitlistForm } from "@/components/waitlist-form";
 import { fieldNotes } from "@/content/field-notes";
+import {
+  capsCollectionSchema,
+  organizationSchema,
+  websiteSchema,
+} from "@/lib/structured-data";
+
+export const metadata: Metadata = {
+  title: "South African Caps & Field Gear in the Making",
+  description:
+    "Join Frontier Supply Co., a South African brand building durable caps and field gear with builders, makers, doers and early field testers.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Frontier Supply Co. | South African Caps & Field Gear",
+    description:
+      "Durable caps and field gear in the making. Join the Frontier waitlist and help shape the first release.",
+    url: "/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Frontier Supply Co. | South African Caps & Field Gear",
+    description:
+      "Join the waitlist for durable South African caps and field gear in the making.",
+  },
+};
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={[organizationSchema(), websiteSchema(), capsCollectionSchema()]} />
       <RevealObserver />
       <FunnelTracker />
       <header className="site-header">
@@ -54,9 +82,9 @@ export default function Home() {
               <h2 id="founding-title">Just getting started.<br /><em>Built to go the distance.</em></h2>
             </div>
             <div className="founding-copy reveal">
-              <p>Frontier is for people who believe competence, ownership and work done properly still matter.</p>
-              <p>We’re building it the same way: listening carefully, testing everything and letting the work speak for itself.</p>
-              <strong>Made openly. Tested honestly. Earned over time.</strong>
+            <p>Frontier is for people who believe competence, ownership and work done properly still matter.</p>
+            <p>We’re building it the same way: listening carefully, testing everything and letting the work speak for itself.</p>
+            <strong>Starting with caps. Made openly. Tested honestly. Earned over time.</strong>
             </div>
           </div>
           <div className="beginning-mark reveal" aria-label="Frontier Supply Co. born in South Africa">
@@ -96,7 +124,7 @@ export default function Home() {
           <div className="section-label reveal"><span>03</span><span>In the making</span></div>
           <div className="build-log-heading reveal">
             <h2 id="build-log-title">Watch it<br /><em>take shape.</em></h2>
-            <p>From the first sketch to the first field test, we’ll share what we’re working on and what we learn along the way.</p>
+            <p>From the first cap sketch to the first field test, we’ll share what we’re working on and what we learn along the way.</p>
           </div>
           <ol className="build-stages">
             <li className="active reveal"><span>01</span><strong>In the field</strong><small>Now</small></li>
@@ -140,7 +168,6 @@ export default function Home() {
         <div className="footer-brand"><strong>Frontier</strong><span>Supply Co.</span></div>
         <p>Built Different.</p>
         <div className="footer-links">
-          <a href="mailto:hello@frontiersupply.co.za">Email</a>
           <a href="https://www.instagram.com/frontier_supply_company/" target="_blank" rel="noreferrer">Instagram</a>
           <Link href="/privacy">Privacy</Link>
           <a href="#top">Back to top ↑</a>

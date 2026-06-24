@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Frontier Supply Co.",
     short_name: "Frontier",
-    description: "For the builders, makers and doers.",
+    description: "South African caps and field gear in the making.",
     start_url: "/",
     display: "standalone",
     background_color: "#f2ede3",

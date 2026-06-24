@@ -18,20 +18,33 @@ const sans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Frontier Supply Co. | Built Different.",
+    default: "Frontier Supply Co. | South African Caps & Field Gear",
     template: "%s | Frontier Supply Co.",
   },
   description:
-    "Frontier Supply Co. is for the builders, makers and doers. Join the Frontier.",
+    "Frontier Supply Co. is a South African brand building durable caps and field gear for builders, makers and doers.",
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
+  applicationName: "Frontier Supply Co.",
+  category: "apparel",
+  keywords: [
+    "Frontier Supply Co.",
+    "South African caps",
+    "caps South Africa",
+    "workwear caps",
+    "outdoor caps",
+    "field gear",
+    "durable caps",
+    "founding member waitlist",
+  ],
   icons: {
     icon: [{ url: "/favicon.png", type: "image/png", sizes: "1254x1254" }],
     apple: [{ url: "/favicon.png", type: "image/png", sizes: "1254x1254" }],
   },
   openGraph: {
-    title: "Frontier Supply Co. | Built Different.",
-    description: "A brand for people who make things happen.",
+    title: "Frontier Supply Co. | South African Caps & Field Gear",
+    description:
+      "A South African brand building durable caps and field gear for people who make things happen.",
     type: "website",
     url: "/",
     siteName: "Frontier Supply Co.",
@@ -40,11 +53,22 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Frontier Supply Co. | Built Different.",
-    description: "A brand for people who make things happen.",
+    title: "Frontier Supply Co. | South African Caps & Field Gear",
+    description:
+      "Durable caps and field gear in the making for builders, makers and doers.",
     images: ["/og-image.jpg"],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {

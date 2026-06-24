@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FunnelTracker } from "@/components/funnel-tracker";
+import { JsonLd } from "@/components/json-ld";
 import { fieldNotes, getFieldNote } from "@/content/field-notes";
+import { fieldNoteSchema } from "@/lib/structured-data";
 
 type FieldNotePageProps = { params: Promise<{ slug: string }> };
 
@@ -14,7 +16,25 @@ export async function generateMetadata({ params }: FieldNotePageProps): Promise<
   const note = getFieldNote((await params).slug);
   if (!note) return {};
 
-  return { title: note.title, description: note.summary };
+  return {
+    title: note.title,
+    description: note.summary,
+    alternates: { canonical: `/field-notes/${note.slug}` },
+    openGraph: {
+      title: note.title,
+      description: note.summary,
+      type: "article",
+      url: `/field-notes/${note.slug}`,
+      publishedTime: note.publishedAtIso,
+      section: "Field Notes",
+      tags: ["Frontier Supply Co.", "South African caps", "workwear caps", "field gear"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: note.title,
+      description: note.summary,
+    },
+  };
 }
 
 export default async function FieldNotePage({ params }: FieldNotePageProps) {
@@ -23,6 +43,7 @@ export default async function FieldNotePage({ params }: FieldNotePageProps) {
 
   return (
     <main className="note-page">
+      <JsonLd data={fieldNoteSchema(note)} />
       <FunnelTracker />
       <nav className="note-nav" aria-label="Field note navigation">
         <Link href="/">← Frontier Supply Co.</Link>
