@@ -3,11 +3,12 @@
 ## Required before production
 
 - Run `supabase/migrations/20260622_launch_hardening.sql` in the Supabase SQL editor.
+- Run `supabase/migrations/20260623_remove_welcome_email_tracking.sql` if the earlier launch migration has already been applied.
+- Run `supabase/migrations/20260628_funnel_geo_views.sql` to add country/city analytics views.
 - Add the production values from `.env.example` in Vercel.
 - Replace `BUSINESS_ADDRESS` and, if needed, `LEGAL_BUSINESS_NAME` with the responsible party's full details.
-- Verify `frontiersupply.co.za` in Resend, then add `RESEND_API_KEY` and `EMAIL_FROM`.
-- Submit a real signup, confirm the subscriber and event rows in Supabase, receive the welcome email, and test its unsubscribe link.
-- Confirm that `hello@frontiersupply.co.za` receives replies.
+- Submit a real signup and confirm the subscriber and event rows in Supabase.
+- When Frontier has a mailbox, add it as `PRIVACY_EMAIL` and update the privacy contact details.
 
 ## Vercel firewall
 

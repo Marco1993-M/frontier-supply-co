@@ -71,7 +71,14 @@ try {
     event_name: "waitlist_joined",
     session_id: sessionId,
     path: "/",
-    properties: { intent: "prototype_testing" },
+    properties: {
+      intent: "prototype_testing",
+      geoContinent: "AF",
+      geoCountry: "ZA",
+      geoRegion: "GP",
+      geoCity: "Johannesburg",
+      geoTimezone: "Africa/Johannesburg",
+    },
   });
 
   if (eventError) throw eventError;
