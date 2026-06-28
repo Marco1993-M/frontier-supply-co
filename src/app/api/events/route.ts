@@ -8,6 +8,26 @@ const publicEvents = new Set<FunnelEventName>([
   "participation_interest",
 ]);
 
+function cleanHeaderValue(value: string | null, maxLength = 100) {
+  if (!value) return "";
+
+  try {
+    return decodeURIComponent(value).replace(/[^\p{L}\p{N}\s._:/+-]/gu, "").trim().slice(0, maxLength);
+  } catch {
+    return value.replace(/[^\p{L}\p{N}\s._:/+-]/gu, "").trim().slice(0, maxLength);
+  }
+}
+
+function getRequestGeo(headers: Headers) {
+  return {
+    geoContinent: cleanHeaderValue(headers.get("x-vercel-ip-continent"), 2),
+    geoCountry: cleanHeaderValue(headers.get("x-vercel-ip-country"), 2),
+    geoRegion: cleanHeaderValue(headers.get("x-vercel-ip-country-region"), 8),
+    geoCity: cleanHeaderValue(headers.get("x-vercel-ip-city"), 120),
+    geoTimezone: cleanHeaderValue(headers.get("x-vercel-ip-timezone"), 80),
+  };
+}
+
 export async function POST(request: Request) {
   try {
     const payload = (await request.json()) as {
@@ -27,8 +47,12 @@ export async function POST(request: Request) {
         .map(([key, value]) => [key.slice(0, 50), String(value).slice(0, 250)]),
     );
 
+    const geoProperties = Object.fromEntries(
+      Object.entries(getRequestGeo(request.headers)).filter(([, value]) => value),
+    );
+
     const sessionId = String(payload.sessionId ?? "").slice(0, 100);
-    await sendFunnelEvent(payload.event, properties, sessionId);
+    await sendFunnelEvent(payload.event, { ...properties, ...geoProperties }, sessionId);
     return new NextResponse(null, { status: 204 });
   } catch {
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });

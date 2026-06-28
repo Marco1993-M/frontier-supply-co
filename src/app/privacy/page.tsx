@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         <p className="legal-intro">We collect only what helps us build Frontier with the people who care about it.</p>
 
         <h2>What we collect</h2>
-        <p>Your email address is required to join. After joining, you may optionally share your occupation, location and product interest. We also record referral details, campaign tags and anonymous interactions with this website.</p>
+        <p>Your email address is required to join. After joining, you may optionally share your occupation, location and product interest. We also record referral details, campaign tags, approximate request location such as country or city, and anonymous interactions with this website.</p>
 
         <h2>Why we use it</h2>
         <p>We use your information to send Frontier updates, invite relevant people into interviews or prototype testing, understand interest in a first release and improve this website. We do not sell your information.</p>
