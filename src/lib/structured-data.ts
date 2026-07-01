@@ -21,10 +21,14 @@ export function organizationSchema() {
       "@type": "Place",
       name: "South Africa",
     },
+    areaServed: {
+      "@type": "Country",
+      name: "South Africa",
+    },
     sameAs: [instagramUrl],
     slogan: "Built Different.",
     description:
-      "Frontier Supply Co. is a South African brand building durable caps and field gear for builders, makers and doers.",
+      "Frontier Supply Co. is a South African brand building durable workwear caps and field gear for builders, makers and doers.",
     brand: {
       "@type": "Brand",
       name: brandName,
@@ -32,6 +36,8 @@ export function organizationSchema() {
     },
     knowsAbout: [
       "South African caps",
+      "workwear caps South Africa",
+      "outdoor caps South Africa",
       "workwear caps",
       "outdoor caps",
       "field gear",
@@ -65,10 +71,14 @@ export function capsCollectionSchema() {
     name: "Frontier caps in development",
     url: `${siteUrl}/#join`,
     isPartOf: { "@id": websiteId },
+    spatialCoverage: {
+      "@type": "Country",
+      name: "South Africa",
+    },
     about: [
       {
         "@type": "Product",
-        name: "Frontier workwear caps",
+        name: "Frontier workwear caps South Africa",
         brand: { "@id": brandId },
         category: "Caps",
         audience: {
@@ -76,7 +86,7 @@ export function capsCollectionSchema() {
           audienceType: "builders, makers, doers and outdoor workers",
         },
         description:
-          "Durable caps for capable people, currently being shaped through field notes, prototype testing and founding-member feedback.",
+          "Durable workwear caps for South African conditions, currently being shaped through field notes, prototype testing and founding-member feedback.",
       },
       {
         "@type": "Thing",
@@ -106,6 +116,8 @@ export function fieldNoteSchema(note: FieldNote) {
     keywords: [
       "Frontier Supply Co.",
       "South African caps",
+      "workwear caps South Africa",
+      "outdoor caps South Africa",
       "workwear caps",
       "outdoor caps",
       "field gear",
