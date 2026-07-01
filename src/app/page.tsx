@@ -13,22 +13,22 @@ import {
 } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "South African Caps & Field Gear in the Making",
+  title: "Workwear Caps South Africa",
   description:
-    "Join Frontier Supply Co., a South African brand building durable caps and field gear with builders, makers, doers and early field testers.",
+    "Join Frontier Supply Co., a South African brand building durable workwear caps and field gear with builders, makers, doers and early field testers.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Frontier Supply Co. | South African Caps & Field Gear",
+    title: "Frontier Supply Co. | Workwear Caps South Africa",
     description:
-      "Durable caps and field gear in the making. Join the Frontier waitlist and help shape the first release.",
+      "Durable South African workwear caps and field gear in the making. Join the Frontier waitlist and help shape the first release.",
     url: "/",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Frontier Supply Co. | South African Caps & Field Gear",
+    title: "Frontier Supply Co. | Workwear Caps South Africa",
     description:
-      "Join the waitlist for durable South African caps and field gear in the making.",
+      "Join the waitlist for durable workwear caps in South Africa.",
   },
 };
 
@@ -82,7 +82,7 @@ export default function Home() {
               <h2 id="founding-title">Just getting started.<br /><em>Built to go the distance.</em></h2>
             </div>
             <div className="founding-copy reveal">
-            <p>Frontier is for people who believe competence, ownership and work done properly still matter.</p>
+            <p>Frontier is for people in South Africa who believe competence, ownership and work done properly still matter.</p>
             <p>We’re building it the same way: listening carefully, testing everything and letting the work speak for itself.</p>
             <strong>Starting with caps. Made openly. Tested honestly. Earned over time.</strong>
             </div>
@@ -97,7 +97,7 @@ export default function Home() {
           <div className="philosophy-copy reveal">
             <h2>Some see problems.<br /><em>We see possibilities.</em></h2>
             <div className="body-copy">
-              <p>Frontier Supply Co. exists for those who make things happen. The builders. The makers. The doers.</p>
+              <p>Frontier Supply Co. exists for those who make things happen in South African workshops, sites, farms, garages and open roads.</p>
               <p>Those who value competence over attention. Quality over shortcuts. Action over excuses.</p>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function Home() {
           <div className="section-label reveal"><span>03</span><span>In the making</span></div>
           <div className="build-log-heading reveal">
             <h2 id="build-log-title">Watch it<br /><em>take shape.</em></h2>
-            <p>From the first cap sketch to the first field test, we’ll share what we’re working on and what we learn along the way.</p>
+            <p>From the first cap sketch to the first field test, we’ll share what we’re learning about fit, shade, sweat, dust and daily wear in South African conditions.</p>
           </div>
           <ol className="build-stages">
             <li className="active reveal"><span>01</span><strong>In the field</strong><small>Now</small></li>
@@ -157,7 +157,7 @@ export default function Home() {
             <h2 id="join-title">Join the<br /><em>Frontier.</em></h2>
           </div>
           <div className="join-form-wrap reveal">
-            <p>We’re building something for people who make things happen. Be the first to hear when we launch.</p>
+            <p>We’re building durable workwear caps in South Africa for people who make things happen. Be the first to hear when we launch.</p>
             <WaitlistForm />
             <small>No noise. Only the things worth knowing.</small>
           </div>
